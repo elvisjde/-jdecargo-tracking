@@ -60,20 +60,18 @@ if df is not None:
             st.success(f"✅ Registro encontrado")
             
             # Datos principales
-            c1, c2 = st.columns(2)
-            with c1:
-                st.metric("ESTATUS ACTUAL", str(resultado['ESTATUS'].values[0]))
-            with c2:
-                st.metric("FECHA ESTIMADA", str(resultado['FECHA'].values[0]))
-            
-            st.info(f"👤 **CLIENTE:** {resultado['CLIENTE'].values[0]}")
-            
-            st.markdown("---")
-            
-            # CONFIGURACIÓN WHATSAPP
-            telefono = "50230193775" 
-            mensaje = f"Hola JDE Cargo, estoy consultando el estatus de mi proyecto *{busqueda.upper()}* y me gustaría recibir más información."
-            link_wa = f"https://wa.me/{telefono}?text={mensaje.replace(' ', '%20')}"
+            c1, c2 = st.markdown(f"""
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="color: #B0BEC5; font-size: 14px; margin-bottom: 5px; font-weight: bold;">ESTATUS ACTUAL</p>
+                        <p style="color: #1A1676; font-size: 24px; font-weight: bold; line-height: 1.2;">{str(resultado['ESTATUS'].values[0])}</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="color: #B0BEC5; font-size: 14px; margin-bottom: 5px; font-weight: bold;">FECHA ESTIMADA</p>
+                        <p style="color: #1A1676; font-size: 24px; font-weight: bold;">{str(resultado['FECHA'].values[0])}</p>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
 
             # Botón visual de WhatsApp
             st.markdown(f"""
