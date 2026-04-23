@@ -59,8 +59,8 @@ if df is not None:
         if not resultado.empty:
             st.success(f"✅ Registro encontrado")
             
-            # Datos principales
-            c1, c2 = st.markdown(f"""
+            # --- SECCIÓN DE DATOS AJUSTABLE (ESTATUS Y FECHA) ---
+            st.markdown(f"""
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;">
                     <div style="flex: 1; min-width: 200px;">
                         <p style="color: #B0BEC5; font-size: 14px; margin-bottom: 5px; font-weight: bold;">ESTATUS ACTUAL</p>
@@ -72,8 +72,15 @@ if df is not None:
                     </div>
                 </div>
             """, unsafe_allow_html=True)
+            
+            st.info(f"👤 **CLIENTE:** {resultado['CLIENTE'].values[0]}")
+            st.markdown("---")
+            
+            # --- LÓGICA Y BOTÓN DE WHATSAPP ---
+            telefono = "50230193775" 
+            mensaje = f"Hola JDE Cargo, estoy consultando el estatus de mi proyecto *{busqueda.upper()}* y me gustaría recibir más información."
+            link_wa = f"https://wa.me/{telefono}?text={mensaje.replace(' ', '%20')}"
 
-            # Botón visual de WhatsApp
             st.markdown(f"""
                 <a href="{link_wa}" target="_blank" style="text-decoration: none;">
                     <div style="background-color:#92C02A; color:white; padding:15px; border-radius:10px; text-align:center; font-weight:bold; font-size:18px;">
